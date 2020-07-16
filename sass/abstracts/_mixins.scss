@@ -1,0 +1,188 @@
+@mixin container {
+  margin: 0 auto;
+  width: 85%;
+}
+
+// @mixin clearfix {
+//   &::after {
+//     content: "";
+//     display: table;
+//     clear: both;
+//   }
+// }
+
+// @mixin absCenter {
+//   position: absolute;
+//   top: 50%;
+//   left: 50%;
+//   transform: translate(-50%, -50%);
+// }
+
+
+// @mixin flexCenter {
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   text-align: center;
+// }
+
+
+// @mixin backgroundDefault {
+//   background-repeat: no-repeat;
+//   background-size: cover;
+//   background-position: center center;
+// }
+
+/*--------------------
+      FLUID TYPE
+      REFERER: https://css-tricks.com/snippets/css/fluid-typography/
+-----------------*/
+@function strip-unit($value) {
+  @return $value / ($value * 0 + 1);
+}
+
+@mixin fluid-type($min-vw, $max-vw, $min-font-size, $max-font-size) {
+  $u1: unit($min-vw);
+  $u2: unit($max-vw);
+  $u3: unit($min-font-size);
+  $u4: unit($max-font-size);
+
+  @if $u1==$u2 and $u1==$u3 and $u1==$u4 {
+    & {
+      font-size: $min-font-size;
+
+      @media screen and (min-width: $min-vw) {
+        font-size: calc(#{$min-font-size} + #{strip-unit($max-font-size - $min-font-size)} * ((100vw - #{$min-vw}) / #{strip-unit($max-vw - $min-vw)}));
+      }
+
+      @media screen and (min-width: $max-vw) {
+        font-size: $max-font-size;
+      }
+    }
+  }
+}
+
+
+/*--------------------
+      arrow
+      referer: https://www.developerdrive.com/10-best-sass-mixins-for-web-developers/
+// -----------------*/
+@mixin arrow($direction: down, $size: 5px, $color: #555) {
+  width: 0;
+  height: 0;
+
+  @if ($direction==left) {
+    border-top: $size solid transparent;
+    border-bottom: $size solid transparent;
+    border-right: $size solid $color;
+  }
+
+  @else if ($direction==right) {
+    border-top: $size solid transparent;
+    border-bottom: $size solid transparent;
+    border-left: $size solid $color;
+  }
+
+  @else if ($direction==down) {
+    border-left: $size solid transparent;
+    border-right: $size solid transparent;
+    border-top: $size solid $color;
+  }
+
+  @else {
+    border-left: $size solid transparent;
+    border-right: $size solid transparent;
+    border-bottom: $size solid $color;
+  }
+}
+
+@mixin respond($breakpoint) {
+
+  // Small devices (Small Phones, 375px and less) */
+  @if $breakpoint==xxs {
+    @media only screen and (max-width: 20em) {
+      @content;
+    } // screen is <= 375px / 16px = 23.4375
+  }
+
+  // Small devices (Medium Phones, 576px and less) */
+  @if $breakpoint==xs {
+    @media only screen and (max-width: 36.125em) {
+      @content; // screen is <= 576px / 16px = 36em
+    }
+  }
+
+  // Small devices (landscape Phones, 768px and less) */
+  @if $breakpoint==sm {
+    @media only screen and (max-width: 48em) {
+      @content; //screen is <= 768px / 16px = 47.93em
+    }
+  }
+
+  // Medium devices (Ipad, 992px and less) */
+  @if $breakpoint==md {
+    @media only screen and (max-width: 62em) {
+      @content; //screen is <= 992px / 16px = 62em
+    }
+  }
+
+  // Large devices (Ipad Pro, 1024px and less) */
+  @if $breakpoint==lg {
+    @media only screen and (max-width: 64em) {
+      @content; //screen is <= 1024px / 16px = 64em
+    }
+  }
+
+  //  ( 1280 and less) */
+  @if $breakpoint==xl {
+    @media only screen and (max-width: 80em) {
+      @content; //screen is <= 1280px / 16px = 80em
+    }
+  }
+
+  // Large devices (Laptops,   1440px) */
+  @if $breakpoint==laptops {
+    @media only screen and (min-width:80em)and (max-width: 118.75em){
+      @content; //screen is <= 1440px / 16px = 90em
+    }
+  }
+
+  
+  // Large laptops (Large Laptops,   1680px) */
+  @if $breakpoint==lg-laptops {
+    @media only screen and (max-width: 105em) {
+      @content; //screen is <= 1680px / 16px = 105em
+    }
+  }
+  
+  // Large devices (large desktops, 1800px and up) */
+  @if $breakpoint==xxl {
+    @media only screen and (min-width: 112.5em) {
+      @content; //screen is >= 1800px / 16px = 112em
+    }
+  }
+
+  // ----------- iPad Pro ----------- */
+  @if $breakpoint==ipad-pro-portrait-landscape {
+    // Portrait and Landscape */
+    @media only screen and (min-width: 1024px) and (max-height: 1366px) and (-webkit-min-device-pixel-ratio: 1.5) {
+      @content;
+    }
+  }
+
+  @if $breakpoint==ipad-pro-portrait {
+
+    // Portrait */
+    @media only screen and (min-width: 1024px) and (max-height: 1366px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 1.5) {
+      @content;
+    }
+  }
+
+  @if $breakpoint==ipad-pro-landscape {
+
+    // Landscape */
+    @media only screen and (min-width: 1024px) and (max-height: 1366px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 1.5) {
+      @content;
+    }
+  }
+}

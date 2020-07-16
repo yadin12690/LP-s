@@ -1,0 +1,24 @@
+/* ABSTRACTS
+================================================> */
+@import "abstracts/mixins";
+@import "abstracts/variables";
+@import "abstracts/fonts";
+
+/* BASE
+================================================> */
+@import "base/base";
+@import "base/typography";
+
+/* COMPONENTS
+================================================> */
+@import "components/bootstrap-partials";
+@import "components/placeholders";
+@import "components/boxes";
+@import "components/buttons";
+@import "components/forms";
+
+
+/* PAGES
+================================================> */
+@import "pages/main_page";
+

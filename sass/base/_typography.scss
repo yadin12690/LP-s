@@ -1,0 +1,84 @@
+/* --------------------
+    HEADLINES PLACEHOLDERS
+----------------- */
+%headline-1-fs {
+  font-size: var(--dsk-headline--1);
+
+  @include respond(lg) {
+    // font-size: $ipro-headline--1;
+  }
+
+  @include respond(sm) {
+    font-size: var(--mob-headline--1);
+  }
+}
+
+%headline-2-fs {
+  font-size: var(--dsk-headline--2);
+
+  @include respond(lg) {
+    // font-size: $ipro-headline--2;
+  }
+
+  @include respond(sm) {
+    font-size: var(--mob-headline--2);
+  }
+}
+
+
+.headline {
+
+  &--1 {
+    @extend %headline-1-fs;
+
+    font-family: var(--font-bold);
+    color:var(--color-4);
+
+    &-green {
+      color:var(--color-2);
+    }
+  }
+
+  &--2 {
+    @extend %headline-2-fs;
+  }
+}
+
+/* --------------------
+    PARAGRAPHS PLACEHOLDERS
+----------------- */
+%para-1-fs {
+  font-size: var(--dsk-article-paragraph);
+
+  @include respond(lg) {
+    // font-size: $ipro-article-paragraph-1;
+  }
+
+  @include respond(sm) {
+    font-size: var(--mob-article-paragraph);
+  }
+}
+
+
+/* --------------------
+    para
+----------------- */
+
+.para {
+
+  &--1 {
+    letter-spacing: 0.63px;
+
+    @extend %para-1-fs;
+
+    &-white {
+      color:var(--color-1);
+      line-height: 1.4;
+
+      @include respond(xs){
+        line-height: 1.2;
+      }
+    }
+  }
+}
+
